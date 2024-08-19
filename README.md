@@ -1,1 +1,3 @@
 # angular-springboot-ecommerce-project
+
+Hi, this project is for studying Angular + SpringBoot before starting the internship...
