@@ -10,6 +10,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { provideHttpClient } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 
 // The order of the routes is important, first match wins. Starting from most specific to generic
 const routes: Routes = [
@@ -22,9 +23,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent],
+  declarations: [AppComponent, ProductListComponent, ProductCategoryMenuComponent],
   // HttpClientModule is deprecated... use provideHttpClient instead to inject the HttpClient service
-  // Configure the router by adding RouterModule with the routes defined from above
+  // Configure the router by adding RouterModule with the routes defined from above. Then it recognizes we set up the routes
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes)],
   // By adding ProductService, we can inject the given service into other class and component
   providers: [provideClientHydration(), provideHttpClient(), ProductService],
