@@ -17,13 +17,16 @@ export class ProductService {
 
   // This method is responsible for making an HTTP GET request to the backend to fetch a list of products.
   // It returns observable. Map the JSON data from Spring Data REST to Product array
-  getProductList(): Observable<Product[]> {
+  getProductList(theCategoryId: number): Observable<Product[]> {
+    // need to build URL based on category id
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
+
     return (
       this.httpClient
         // send the GET request to the given backend baseUrl using httpClient
         // The generic type <GetResponse> specifies the expected structure of the response data,
         // which is defined by the GetResponse interface.
-        .get<GetResponse>(this.baseUrl)
+        .get<GetResponse>(searchUrl)
         // pipe it and then map the data(response) to the given data type
         .pipe(map((response) => response._embedded.products))
     );
