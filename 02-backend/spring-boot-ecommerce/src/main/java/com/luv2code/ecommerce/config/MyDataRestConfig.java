@@ -47,9 +47,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer{
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
         
-        // call an internal helped method to expose the ids of the all returned products in the response from Spring Data Rest (lecture 84)
+        // call an internal helped method to expose the ids of the products in the response from Spring Data Rest (lecture 84)
         exposeIds(config);
-        // OR you can use below simple one line too. It's grabbed from stackoverflow. The point is exposing the Ids of all the data coming from the database since Spring Data REST does not return the Ids as a default. 
+        // OR you can use below simple one line too. It's grabbed from stackoverflow. The point is exposing the Ids of all the data coming from the database since Spring Data REST does not includes the Ids as a default. 
         // config.exposeIdsFor(entityManager.getMetamodel().getEntities().stream().map(e -> e.getJavaType()).collect(Collectors.toList()).toArray(new Class[0]));
     }
 
