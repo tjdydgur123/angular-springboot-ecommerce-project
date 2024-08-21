@@ -28,4 +28,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      Pageable represents pagination information such as pageNumber, pageSize, previous, next etc */
     Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable);
 
+    // 'Containing' -> LIKE operator in query or sql
+    // http://localhost:8080/api/products/search/findByNameContaining?name=${name}
+    Page<Product> findByNameContaining(@Param("name") String name, Pageable pageable);
+
 }

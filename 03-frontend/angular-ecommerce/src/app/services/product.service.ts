@@ -24,21 +24,31 @@ export class ProductService {
     // below endpoint is exposed by Spring Data REST based on the query name
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
 
-    return (
-      this.httpClient
-        // send the GET request to the given backend baseUrl or other url using httpClient
-        // The generic type <GetResponseProducts> specifies the expected structure of the response data,
-        // which is defined by the GetResponseProducts interface.
-        .get<GetResponseProducts>(searchUrl)
-        // pipe it and then map the data(response) to the given data type
-        .pipe(map((response) => response._embedded.products))
-    );
+    return this.getProducts(searchUrl);
+  }
+
+  searchProducts(theKeyword: string): Observable<Product[]> {
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+
+    return this.getProducts(searchUrl);
   }
 
   getProductCategories(): Observable<ProductCategory[]> {
     return this.httpClient
       .get<GetResponseProductCategory>(this.categoryUrl)
       .pipe(map((response) => response._embedded.productCategory));
+  }
+
+  private getProducts(searchUrl: string) {
+    // send the GET request to the given backend baseUrl or other url using httpClient
+    // The generic type <GetResponseProducts> specifies the expected structure of the response data,
+    // which is defined by the GetResponseProducts interface.
+    return (
+      this.httpClient
+        .get<GetResponseProducts>(searchUrl)
+        // pipe it and then map the data(response) to the given data type
+        .pipe(map((response) => response._embedded.products))
+    );
   }
 }
 

@@ -11,10 +11,12 @@ import { provideHttpClient } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 // The order of the routes is important, first match wins. Starting from most specific to generic
 const routes: Routes = [
   // When path matches, it will create new instance of given component
+  { path: 'search/:keyword', component: ProductListComponent },
   { path: 'category/:id', component: ProductListComponent },
   { path: 'category', component: ProductListComponent }, // default category id will be set
   { path: 'products', component: ProductListComponent }, // default category id will be set
@@ -23,7 +25,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent, ProductCategoryMenuComponent],
+  declarations: [
+    AppComponent,
+    ProductListComponent,
+    ProductCategoryMenuComponent,
+    SearchComponent,
+  ],
   // HttpClientModule is deprecated... use provideHttpClient instead to inject the HttpClient service
   // Configure the router by adding RouterModule with the routes defined from above. Then it recognizes we set up the routes
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(routes)],
