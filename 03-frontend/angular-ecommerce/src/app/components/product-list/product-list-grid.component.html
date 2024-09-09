@@ -5,8 +5,14 @@
         <!-- loop over the collection of products -->
         <div *ngFor="let tempProduct of products" class="col-md-3">
           <div class="product-box">
-            <img src="{{ tempProduct.imageUrl }}" class="img-responsive" />
-            <h1>{{ tempProduct.name }}</h1>
+            <!-- add a link on product image -->
+            <a routerLink="/products/{{ tempProduct.id }}">
+              <img src="{{ tempProduct.imageUrl }}" class="img-responsive" />
+            </a>
+            <!-- add a link on product name -->
+            <a routerLink="/products/{{ tempProduct.id }}">
+              <h1>{{ tempProduct.name }}</h1>
+            </a>
             <div class="price">
               {{ tempProduct.unitPrice | currency : "USD" }}
             </div>
@@ -17,6 +23,7 @@
         <!-- if products empty then display a message -->
         <!-- ?. is Safe navigation operator  -->
         <!-- It guards against null and underfind values in property paths -->
+        <!-- it protects against a view render failure if item is null -->
         <div
           *ngIf="products?.length == 0"
           class="alert alert-warning col-md-12"
