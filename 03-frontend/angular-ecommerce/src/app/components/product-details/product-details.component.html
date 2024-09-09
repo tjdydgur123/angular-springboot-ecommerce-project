@@ -1,0 +1,18 @@
+<div class="detail-section">
+  <div class="container-fluid">
+    <!-- refer to the link for issue and fix https://www.udemy.com/course/full-stack-angular-spring-boot-tutorial/learn/lecture/17506814#questions/9430725 -->
+    <ng-container *ngIf="product">
+      <img src="{{ product.imageUrl }}" class="detail-img" />
+
+      <h3>{{ product.name }}</h3>
+      <div class="price">{{ product.unitPrice | currency : "USD" }}</div>
+      <a href="#" class="primary-btn">Add to cart</a>
+
+      <hr />
+      <h4>Description</h4>
+      <p>{{ product.description }}</p>
+    </ng-container>
+
+    <a routerLink="/products" class="mt-5">Back to Product List</a>
+  </div>
+</div>
