@@ -20,7 +20,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     /* behind the scenes, Spring will execute a query similar to this
        SELECT * FROM product where category_id=?
-       id=? will be from -> @Param("id") Long id
+       id=? will be from -> @Param("id") Long id   The id value is included in the url which is requested from the client-side
+       The @Param("id") Long id will refer to the id parameter in the requested url
        Also, Spring Data REST automatically exposes below endpoint
        /search/<<queryMethodName>>  ->  http://localhost:8080/api/products/search/findByCategoryId?id=${id} */
 

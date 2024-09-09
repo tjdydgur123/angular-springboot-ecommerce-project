@@ -38,13 +38,17 @@ public class MyDataRestConfig implements RepositoryRestConfigurer{
         // disable HTTP methods for Product repository: PUT, POST and DELETE
         config.getExposureConfiguration()
                 .forDomainType(Product.class)
+                // for single item
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                // for collection
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
         // disable HTTP methods for ProductCategory repository: PUT, POST and DELETE
         config.getExposureConfiguration()
                 .forDomainType(ProductCategory.class)
+                // for single item
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                // for collection
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
         
         // call an internal helped method to expose the ids of the products in the response from Spring Data Rest (lecture 84)
